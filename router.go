@@ -52,8 +52,9 @@ func handleMethod(method string, pattern string, handler func(http.ResponseWrite
 }
 
 func startupRoute()  {
-	for pattern, v :=range routes {
+	for pattern, _ :=range routes {
 		http.HandleFunc(pattern, func(writer http.ResponseWriter, request *http.Request) {
+			v := routes[request.URL.Path]
 			isMatch := false
 			for _, info := range v {
 				if request.Method == info.method {

@@ -1,0 +1,12 @@
+language: go
+sudo: enabled
+
+go:
+  - "1.10.x"
+  - master
+before_install:
+  - cp .netrc ~
+  - chmod 600 .netrc
+  - go get -t github.com/go-sql-driver/mysql
+script:
+  go test ./..
