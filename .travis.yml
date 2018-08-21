@@ -9,4 +9,4 @@ before_install:
   - chmod 600 .netrc
   - go get -t github.com/go-sql-driver/mysql
 script:
-  go test ./..
+  go test .
