@@ -8,27 +8,27 @@ type Pagination struct {
 	TotalCount int `json:"totalCount"`
 	TotalPage int `json:"totalPage"`
 	CurrentPage int `json:"currentPage"`
-	PageNum int `json:"pageNum"`
+	PageSize int `json:"pageSize"`
 }
 
 func (p *Pagination) GetSkip() int {
 	if p.CurrentPage <= 1 {
 		p.CurrentPage = 1
 	}
-	return (p.CurrentPage -1) * p.PageNum
+	return (p.CurrentPage -1) * p.PageSize
 }
 
 func (p *Pagination) GetLimit() int {
-	return p.PageNum
+	return p.PageSize
 }
 
 func (p *Pagination) SetTotalCount(totalCount int)  {
-	if p.PageNum == 0 {
-		p.PageNum = 20;
+	if p.PageSize == 0 {
+		p.PageSize = 20;
 	}
 	p.TotalCount = totalCount
-	p.TotalPage = totalCount / p.PageNum
-	if totalCount % p.PageNum != 0 {
+	p.TotalPage = totalCount / p.PageSize
+	if totalCount % p.PageSize != 0 {
 		p.TotalPage++
 	}
 }
